@@ -14,7 +14,7 @@ function addBookToLibrary(book) {
     userLibrary.unshift(book);
 }
 
-// Loop through userLibrary array and display each book on page
+// Loop through userLibrary array and display each book as a card
 function displayBooks() {
     const cardContainer = document.querySelector("#card-container");
     userLibrary.forEach((book) => {
