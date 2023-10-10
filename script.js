@@ -7,9 +7,6 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function() {
-        return `${title} by ${author}, ${pages} pages, ${read}`;
-    }
 }
 
 // Add Book instance to start of userLibrary array
@@ -31,17 +28,16 @@ function createCard(book) {
     const card = document.createElement("div");    
     card.classList.add("card");
 
-    // TODO: Loop over Book instance properties and create respective HTML DOM elements
-    // to replace what I have below using Object.keys() method or something similar
-
-    const title = document.createTextNode(book.title);
-    const author = document.createTextNode(book.author);
-    const pages = document.createTextNode(book.pages);
-    const read = document.createTextNode(book.read);
-    card.appendChild(title);
-    card.appendChild(author);
-    card.appendChild(pages);
-    card.appendChild(read);
+    // Loop over Book instance properties and create paragraph element for each property
+    Object.keys(book).forEach(key => {
+        const keyPara = document.createElement("p");
+        // We must use bracket notation here in book[key] rather than dot notation since
+        // we are trying to dynamically access a property in book.
+        const keyParaText = document.createTextNode(`${book[key]}`);
+        keyPara.appendChild(keyParaText);
+        keyPara.classList.add(`${key}`);
+        card.appendChild(keyPara);
+    });
 
     return card;
 }
