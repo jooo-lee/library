@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", system-ui, Helvetica, Arial, sans-serif;
+}
+
+#card-container {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* --------------------------- Book card --------------------------- */
+
+.card {
+    border: 1px solid rgb(173, 173, 173);
+    border-radius: 8px;
+    box-shadow: 0px 5px 5px rgba(149, 157, 165, 0.2);
+    text-align: center;
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.card > button {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100px;
+    background-color: white;
+}
+
+.card > .unread {
+    border: 1px dashed black;
+}
