@@ -30,28 +30,41 @@ function createCard(book) {
 
     // Loop over Book instance properties and create DOM element for each property
     Object.keys(book).forEach(key => {
-        if (key == "read") {
-            const btn = document.createElement("button");
-            btn.textContent = book[key] ? "Read" : "Unread";
-            if (!book[key]) btn.classList.toggle("unread");
-            card.appendChild(btn);
-            // Continue to next iteration of forEach loop
-            return;
+        switch(key) {
+            case "title":
+            case "author":
+            case "pages":
+                // We must use bracket notation here in book[key] rather than dot notation since
+                // we are trying to dynamically access a property in book.
+                const paraNode = createCardParaNode(key, book[key]);
+                card.appendChild(paraNode);
+                break;
+            case "read":
+                const readBtn = createReadBtn(book[key]);
+                card.appendChild(readBtn);
+                break;
+            default: 
+                break;
         }
-
-        const keyPara = document.createElement("p");
-        // We must use bracket notation here in book[key] rather than dot notation since
-        // we are trying to dynamically access a property in book.
-        const keyParaText = document.createTextNode(`${book[key]}`);
-        if (key == "pages") {
-            keyPara.prepend("Pages: ");
-        }
-        keyPara.appendChild(keyParaText);
-        keyPara.classList.add(`${key}`);
-        card.appendChild(keyPara);
     });
 
     return card;
+}
+
+function createCardParaNode(propertyName, propertyValue) {
+    const para = document.createElement("p");
+    const text = document.createTextNode(propertyValue);
+    para.appendChild(text);
+    para.classList.add(propertyName);
+    if (propertyName == "pages") para.prepend("Pages: ");
+    return para;
+}
+
+function createReadBtn(read) {
+    const btn = document.createElement("button");
+    btn.textContent = read ? "Read" : "Unread";
+    if (!read) btn.classList.toggle("unread");
+    return btn;
 }
 
 
