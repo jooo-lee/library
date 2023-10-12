@@ -33,6 +33,7 @@ function createCard(book) {
         if (key == "read") {
             const btn = document.createElement("button");
             btn.textContent = book[key] ? "Read" : "Unread";
+            if (!book[key]) btn.classList.toggle("unread");
             card.appendChild(btn);
             // Continue to next iteration of forEach loop
             return;
