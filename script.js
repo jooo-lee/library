@@ -75,11 +75,11 @@ function createReadBtn(read) {
 const openAddBookBtn = document.querySelector("#add-book");
 // New book dialog
 const addBookDialog = document.querySelector("#add-book-dialog");
-// Button for closing add new book dialog
-const closeAddBookBtn = document.querySelector("#add-book-dialog .close-dialog");
+// Button for cancelling add new book dialog
+const cancelAddBookBtn = document.querySelector("#add-book-dialog .cancel-dialog");
 
 openAddBookBtn.addEventListener("click", () => addBookDialog.showModal());
-closeAddBookBtn.addEventListener("click", () => addBookDialog.close());
+cancelAddBookBtn.addEventListener("click", () => addBookDialog.close());
 
 // ------------------------------- Display default books for testing  -------------------------------
 
