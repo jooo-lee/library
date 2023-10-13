@@ -67,6 +67,14 @@ function createReadBtn(read) {
     return btn;
 }
 
+// Button for adding new book to library
+const addBookBtn = document.querySelector("#add-book");
+addBookBtn.addEventListener("click", addBook);
+
+function addBook() {
+    console.log("add book");
+}
+
 
 // For testing purposes
 const bk1 = new Book("Finding Me", "Viola Davis", 304, true);
