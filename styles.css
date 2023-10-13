@@ -8,6 +8,7 @@
 
 #card-container {
     display: grid;
+    grid-auto-rows: 1fr;
     gap: 20px;
     padding: 20px;
 }
@@ -21,8 +22,9 @@
     text-align: center;
     padding: 15px;
 
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr auto auto auto; /* fr is greedy, auto is shy */
+    justify-items: center;
     align-items: center;
     gap: 10px;
 }
