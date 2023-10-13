@@ -14,6 +14,8 @@ function addBookToLibrary(book) {
     userLibrary.unshift(book);
 }
 
+// --------------------------------- Displaying book cards on page ---------------------------------
+
 // Loop through userLibrary array and display each book as a card
 function displayBooks() {
     const cardContainer = document.querySelector("#card-container");
@@ -67,16 +69,20 @@ function createReadBtn(read) {
     return btn;
 }
 
-// Button for adding new book to library
-const addBookBtn = document.querySelector("#add-book");
-addBookBtn.addEventListener("click", addBook);
+// ------------------------------- Adding a new book to the library -------------------------------
 
-function addBook() {
-    console.log("add book");
-}
+// Button for opening add new book dialog
+const openAddBookBtn = document.querySelector("#add-book");
+// New book dialog
+const addBookDialog = document.querySelector("#add-book-dialog");
+// Button for closing add new book dialog
+const closeAddBookBtn = document.querySelector("#add-book-dialog .close-dialog");
 
+openAddBookBtn.addEventListener("click", () => addBookDialog.showModal());
+closeAddBookBtn.addEventListener("click", () => addBookDialog.close());
 
-// For testing purposes
+// ------------------------------- Display default books for testing  -------------------------------
+
 const bk1 = new Book("Finding Me", "Viola Davis", 304, true);
 const bk2 = new Book("In.", "Will McPhail", 267, true);
 const bk3 = new Book("The Wind-Up Bird Chronicle", "Haruki Murakami", 607, false);
