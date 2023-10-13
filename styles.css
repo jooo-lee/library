@@ -6,6 +6,12 @@
     font-family: "Raleway", system-ui, Helvetica, Arial, sans-serif;
 }
 
+h1 {
+    margin-top: 15px;
+    margin-left: 20px;
+    width: fit-content;
+}
+
 #card-container {
     display: grid;
     grid-auto-rows: 1fr;
@@ -30,7 +36,7 @@
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 1.3rem;
 }
 
 .card > button {
