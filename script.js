@@ -71,22 +71,36 @@ function createReadBtn(read) {
 
 // ------------------------------- Adding a new book to the library -------------------------------
 
-// Button for opening add new book dialog
-const openAddBookBtn = document.querySelector("#add-book");
-// New book dialog
-const addBookDialog = document.querySelector("#add-book-dialog");
-// Button for cancelling add new book dialog
-const cancelAddBookBtn = document.querySelector("#add-book-dialog .cancel-dialog");
+// Button for opening add book modal
+const addBookBtn = document.querySelector("#add-book");
+// Add book to library modal
+const addBookModal = document.querySelector("#add-book-modal");
+// Button for cancelling add new book
+const cancelAddBookBtn = document.querySelector("#add-book-modal .cancel-modal");
 
-openAddBookBtn.addEventListener("click", () => addBookDialog.showModal());
-cancelAddBookBtn.addEventListener("click", () => addBookDialog.close());
+addBookBtn.addEventListener("click", openAddBookModal);
+cancelAddBookBtn.addEventListener("click", closeAddBookModal);
+
+function openAddBookModal() {
+    addBookModal.showModal();
+    // Prevent scrolling when modal is open
+    document.body.style.overflow = "hidden";
+}
+
+function closeAddBookModal() {
+    addBookModal.close()
+    // Allow scrolling when modal is closed
+    document.body.style.overflow = "auto";
+}
 
 // ------------------------------- Display default books for testing  -------------------------------
 
 const bk1 = new Book("Finding Me", "Viola Davis", 304, true);
 const bk2 = new Book("In.", "Will McPhail", 267, true);
 const bk3 = new Book("The Wind-Up Bird Chronicle", "Haruki Murakami", 607, false);
+const bk4 = new Book("Oscar et la dame rose", "Éric-Emmanuel Schmitt", 83, false);
 addBookToLibrary(bk1);
 addBookToLibrary(bk2);
 addBookToLibrary(bk3);
+addBookToLibrary(bk4);
 displayBooks();
