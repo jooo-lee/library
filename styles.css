@@ -51,7 +51,7 @@ h1 {
     backdrop-filter: blur(1px); /* Blur backdrop when modal is open */
 }
 
-#add-book-modal form {
+#add-book-form {
     display: flex;
     flex-direction: column;
     gap: 10px;

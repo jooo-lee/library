@@ -93,6 +93,27 @@ function closeAddBookModal() {
     document.body.style.overflow = "auto";
 }
 
+// Add new book modal form
+const addBookForm = document.querySelector("#add-book-form");
+
+addBookForm.addEventListener("submit", addNewBook);
+
+function addNewBook(e) {
+    // Prevent default form submission behaviour
+    e.preventDefault();
+
+    // Get user inputted values from form
+    const newBookTitle = addBookForm.elements["title"].value;
+    const newBookAuthor = addBookForm.elements["author"].value;
+    const newBookPages = addBookForm.elements["pages"].value;
+    const newBookRead = addBookForm.elements["read"].checked;
+
+    const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, newBookRead);
+    addBookToLibrary(newBook);
+    
+    closeAddBookModal();
+}
+
 // ------------------------------- Display default books for testing  -------------------------------
 
 const bk1 = new Book("Finding Me", "Viola Davis", 304, true);
