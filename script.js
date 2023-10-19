@@ -95,7 +95,6 @@ function closeAddBookModal() {
 
 // Add new book modal form
 const addBookForm = document.querySelector("#add-book-form");
-
 addBookForm.addEventListener("submit", addNewBook);
 
 function addNewBook(e) {
@@ -110,8 +109,19 @@ function addNewBook(e) {
 
     const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, newBookRead);
     addBookToLibrary(newBook);
-    
+
     closeAddBookModal();
+
+    displayNewBook(newBook);
+    
+    // Clear form data after form is submitted
+    addBookForm.reset();
+}
+
+function displayNewBook(newBook) {
+    const cardContainer = document.querySelector("#card-container");
+    const card = createCard(newBook);
+    cardContainer.prepend(card);
 }
 
 // ------------------------------- Display default books for testing  -------------------------------
