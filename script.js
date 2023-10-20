@@ -93,6 +93,19 @@ function closeAddBookModal() {
     document.body.style.overflow = "auto";
 }
 
+// Close new book modal when clicking outside of it
+addBookModal.addEventListener("click", e => {
+    const modalDimensions = addBookModal.getBoundingClientRect();
+    if (
+        e.clientX < modalDimensions.left ||
+        e.clientX > modalDimensions.right ||
+        e.clientY < modalDimensions.top ||
+        e.clientY > modalDimensions.bottom
+    ) {
+        closeAddBookModal();
+    }
+});
+
 // ------------------------------- New book modal form validation -------------------------------
 
 const pagesInput = document.querySelector("#pages");
