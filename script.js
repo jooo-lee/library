@@ -91,6 +91,8 @@ function closeAddBookModal() {
     addBookModal.close();
     // Allow scrolling when modal is closed
     document.body.style.overflow = "auto";
+    // Clear form data
+    addBookForm.reset();
 }
 
 // Close new book modal when clicking outside of it
@@ -151,9 +153,6 @@ function addNewBook(e) {
     closeAddBookModal();
 
     displayNewBook(newBook);
-    
-    // Clear form data after form is submitted
-    addBookForm.reset();
 }
 
 function displayNewBook(newBook) {
