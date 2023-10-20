@@ -30,10 +30,15 @@ h1 {
     width: fit-content;
 }
 
-/* SVG to open add new book modal */
+/* Button to open modal for new book */
 #add-book {
+    border: none;
     border-radius: 5px;
     background-color: white;
+}
+
+/* SVG inside add new book button */
+#add-book img {
     padding: 2px;
     height: 2rem;
 }
