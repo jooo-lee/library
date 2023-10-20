@@ -69,7 +69,7 @@ function createReadBtn(read) {
     return btn;
 }
 
-// ------------------------------- Adding a new book to the library -------------------------------
+// ------------------------------- Opening and closing new book modal -------------------------------
 
 // Button for opening add book modal
 const addBookBtn = document.querySelector("#add-book");
@@ -88,10 +88,35 @@ function openAddBookModal() {
 }
 
 function closeAddBookModal() {
-    addBookModal.close()
+    addBookModal.close();
     // Allow scrolling when modal is closed
     document.body.style.overflow = "auto";
 }
+
+// ------------------------------- New book modal form validation -------------------------------
+
+const pagesInput = document.querySelector("#pages");
+pagesInput.addEventListener("input", validatePages);
+pagesInput.addEventListener("keydown", checkForDecimal);
+
+// Make sure pages input is a positive integer
+function validatePages() {
+    // Prevent leading zeros
+    if (pagesInput.value == "0") {
+        pagesInput.value = pagesInput.value.replace(/0/, "");
+        return;
+    }
+    pagesInput.value = pagesInput.value.replace(/[^\d]/, "");
+}
+
+// Prevent cursor from jumping to start of input if user presses decimal key
+function checkForDecimal(e) {
+    if (e.keyCode == 190) {
+        e.preventDefault();
+    }
+}
+
+// ------------------------------- Adding and displaying new book -------------------------------
 
 // Add new book modal form
 const addBookForm = document.querySelector("#add-book-form");
