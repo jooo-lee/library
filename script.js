@@ -51,6 +51,10 @@ function createCard(book) {
         }
     });
 
+    // Create and add delete book button
+    const deleteBtn = createDeleteBtn();
+    card.appendChild(deleteBtn);
+
     return card;
 }
 
@@ -67,6 +71,13 @@ function createReadBtn(read) {
     const btn = document.createElement("button");
     btn.textContent = read ? "Read" : "Unread";
     if (!read) btn.classList.toggle("unread");
+    return btn;
+}
+
+function createDeleteBtn() {
+    const btn = document.createElement("button");
+    btn.textContent = "Delete";
+    btn.classList.add("delete");
     return btn;
 }
 
