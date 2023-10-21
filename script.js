@@ -9,19 +9,20 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// Add Book instance to start of userLibrary array
+// Push Book instance to userLibrary array
 function addBookToLibrary(book) {
-    userLibrary.unshift(book);
+    userLibrary.push(book);
 }
 
 // --------------------------------- Displaying book cards on page ---------------------------------
 
 // Loop through userLibrary array and display each book as a card
+// Cards are displayed in reverse order of userLibrary array
 function displayBooks() {
     const cardContainer = document.querySelector("#card-container");
     userLibrary.forEach((book) => {
         const card = createCard(book);
-        cardContainer.appendChild(card);
+        cardContainer.prepend(card);
     });
 }
 
