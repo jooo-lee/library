@@ -9,21 +9,23 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// Push Book instance to userLibrary array
+// Add Book instance to start of userLibrary array
 function addBookToLibrary(book) {
-    userLibrary.push(book);
+    userLibrary.unshift(book);
 }
 
 // --------------------------------- Displaying book cards on page ---------------------------------
 
 // Loop through userLibrary array and display each book as a card
-// Cards are displayed in reverse order of userLibrary array
 function displayBooks() {
     const cardContainer = document.querySelector("#card-container");
-    userLibrary.forEach((book) => {
-        const card = createCard(book);
-        cardContainer.prepend(card);
-    });
+
+    for (let i = 0; i < userLibrary.length; i++) {
+        const card = createCard(userLibrary[i]);
+        // Link card with respective Book object
+        card.setAttribute("data-index", i);
+        cardContainer.appendChild(card);
+    }
 }
 
 // Create HTML DOM element for Book instance
@@ -51,8 +53,8 @@ function createCard(book) {
         }
     });
 
-    // Create and add delete book button
     const deleteBtn = createDeleteBtn();
+    deleteBtn.addEventListener("click", deleteBook);
     card.appendChild(deleteBtn);
 
     return card;
@@ -79,6 +81,27 @@ function createDeleteBtn() {
     btn.textContent = "Delete";
     btn.classList.add("delete");
     return btn;
+}
+
+function deleteBook() {
+    // Delete card DOM element
+    this.parentElement.remove();
+
+    // Delete Book instance from userLibrary
+    const index = this.parentElement.getAttribute("data-index");
+    console.log(userLibrary.splice(index, 1));
+
+    updateDataIndices();
+}
+
+// Keep data-index attributes of cards consistent with respective Book object's index in userLibrary array
+function updateDataIndices() {
+    const cardContainer = document.querySelector("#card-container");
+
+    for (let i = 0; i < cardContainer.children.length; i++) {
+        const card = cardContainer.children[i];
+        card.setAttribute("data-index", i);
+    }
 }
 
 // ------------------------------- Opening and closing new book modal -------------------------------
@@ -171,6 +194,7 @@ function displayNewBook(newBook) {
     const cardContainer = document.querySelector("#card-container");
     const card = createCard(newBook);
     cardContainer.prepend(card);
+    updateDataIndices();
 }
 
 // ------------------------------- Display default books for testing  -------------------------------
