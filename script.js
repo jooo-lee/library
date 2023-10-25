@@ -89,7 +89,7 @@ function deleteBook() {
 
     // Delete Book instance from userLibrary
     const index = this.parentElement.getAttribute("data-index");
-    console.log(userLibrary.splice(index, 1));
+    userLibrary.splice(index, 1);
 
     updateDataIndices();
 }
