@@ -106,6 +106,8 @@ function updateDataIndices() {
 
 // ------------------------------- Opening and closing new book modal -------------------------------
 
+// New book modal form
+const addBookForm = document.querySelector("#add-book-form");
 // Button for opening add book modal
 const addBookBtn = document.querySelector("#add-book");
 // Add book to library modal
@@ -132,6 +134,8 @@ function closeAddBookModal() {
 
 // Close new book modal when clicking outside of it
 addBookModal.addEventListener("click", e => {
+    // Prevent checking and unchecking checkbox using keyboard from closing modal
+    if (e.clientX == 0 && e.clientY == 0) return;
     const modalDimensions = addBookModal.getBoundingClientRect();
     if (
         e.clientX < modalDimensions.left ||
@@ -166,10 +170,21 @@ function checkForDecimal(e) {
     }
 }
 
+// ---------------------------- Handle "enter" key for new book form ----------------------------
+
+const textAndNumberInputs = document.querySelectorAll("input[type='text'], input[type='number']");
+textAndNumberInputs.forEach(input => input.addEventListener("keydown", submitOnEnter));
+
+function submitOnEnter(e) {
+    if (e.key == "Enter") {
+        if (addBookForm.checkValidity()) {
+            addNewBook(e);
+        }
+    }
+}
+
 // ------------------------------- Adding and displaying new book -------------------------------
 
-// Add new book modal form
-const addBookForm = document.querySelector("#add-book-form");
 addBookForm.addEventListener("submit", addNewBook);
 
 function addNewBook(e) {
