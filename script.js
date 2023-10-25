@@ -73,7 +73,17 @@ function createReadBtn(read) {
     const btn = document.createElement("button");
     btn.textContent = read ? "Read" : "Unread";
     if (!read) btn.classList.toggle("unread");
+    btn.addEventListener("click", changeReadStatus);
     return btn;
+}
+
+function changeReadStatus() {
+    this.classList.toggle("unread");
+    
+    // Change "read" status of corresponding Book instance in userLibrary
+    const index = this.parentElement.getAttribute("data-index");
+    userLibrary[index].read = !userLibrary[index].read;
+    this.textContent = userLibrary[index].read ? "Read" : "Unread";
 }
 
 function createDeleteBtn() {
