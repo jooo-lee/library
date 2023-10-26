@@ -158,7 +158,13 @@ h1 {
     border: 1px solid black;
     border-radius: var(--border-radius);
     width: 100px;
+    color: black;
     background-color: #DBB4AD;
+    font-size: 1rem;
+}
+
+.card button:nth-of-type(1) {
+    margin-top: 10px;
 }
 
 .card .unread {
