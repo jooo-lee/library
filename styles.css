@@ -183,4 +183,8 @@ h1 {
         filter: brightness(85%);
         cursor: pointer;
     }
+
+    input[type="checkbox"]:hover {
+        cursor: pointer;
+    }
 }
