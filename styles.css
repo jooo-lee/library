@@ -129,6 +129,7 @@ h1 {
 
 #card-container {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-auto-rows: 1fr;
     gap: 20px;
 }
@@ -167,4 +168,13 @@ h1 {
 .card .delete {
     color: white;
     background-color: #D30C7B;
+}
+
+/* --------------------------- Hover Effects --------------------------- */
+
+@media (hover: hover) {
+    button:hover {
+        filter: brightness(85%);
+        cursor: pointer;
+    }
 }
