@@ -1,6 +1,3 @@
-// Store current user's books
-const userLibrary = [];
-
 // Book object constructor
 function Book(title, author, pages, read) {
     this.title = title;
@@ -9,12 +6,26 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// Add Book instance to start of userLibrary array
-function addBookToLibrary(book) {
-    userLibrary.unshift(book);
+// -------------------------------------- Initialize page --------------------------------------
+
+// Store current user's books in array
+const userLibrary = getCurrUserLibrary();
+
+displayBooks();
+
+// -------------------------------------- Local storage --------------------------------------
+
+// Updating local storage after changes to userLibrary
+function updateLocalStorage() {
+    localStorage.setItem("userLibrary", JSON.stringify(userLibrary));
 }
 
-// --------------------------------- Displaying book cards on page ---------------------------------
+// Retrieve current user's userLibrary from local storage
+function getCurrUserLibrary() {
+    return JSON.parse(localStorage.getItem("userLibrary"));
+}
+
+// --------------------------- Displaying book cards on page open or reload ---------------------------
 
 // Loop through userLibrary array and display each book as a card
 function displayBooks() {
@@ -84,6 +95,8 @@ function changeReadStatus() {
     const index = this.parentElement.getAttribute("data-index");
     userLibrary[index].read = !userLibrary[index].read;
     this.textContent = userLibrary[index].read ? "Read" : "Unread";
+
+    updateLocalStorage();
 }
 
 function createDeleteBtn() {
@@ -101,6 +114,7 @@ function deleteBook() {
     const index = this.parentElement.getAttribute("data-index");
     userLibrary.splice(index, 1);
 
+    updateLocalStorage();
     updateDataIndices();
 }
 
@@ -208,7 +222,10 @@ function addNewBook(e) {
     const newBookRead = addBookForm.elements["read"].checked;
 
     const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, newBookRead);
-    addBookToLibrary(newBook);
+
+    // Add Book instance to start of userLibrary array
+    userLibrary.unshift(newBook);
+    updateLocalStorage();
 
     closeAddBookModal();
 
@@ -221,24 +238,3 @@ function displayNewBook(newBook) {
     cardContainer.prepend(card);
     updateDataIndices();
 }
-
-// ------------------------------- Display default books for testing  -------------------------------
-
-const bk1 = new Book("Cleopatra and Frankenstein", "Coco Mellors", 384, true);
-const bk2 = new Book("Finding Me", "Viola Davis", 304, true);
-const bk3 = new Book("In.", "Will McPhail", 267, true);
-const bk4 = new Book("The Wind-Up Bird Chronicle", "Haruki Murakami", 607, false);
-const bk5 = new Book("Oscar et la dame rose", "Éric-Emmanuel Schmitt", 83, false);
-const bk6 = new Book("Coraline", "Neil Gaiman", 194, true);
-const bk7 = new Book("How to Pronounce Knife", "Souvankham Thammavongsa", 192, false);
-const bk8 = new Book("Five Little Indians", "Michelle Good", 304, false);
-
-addBookToLibrary(bk1);
-addBookToLibrary(bk2);
-addBookToLibrary(bk3);
-addBookToLibrary(bk4);
-addBookToLibrary(bk5);
-addBookToLibrary(bk6);
-addBookToLibrary(bk7);
-addBookToLibrary(bk8);
-displayBooks();
