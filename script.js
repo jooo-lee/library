@@ -22,7 +22,7 @@ function updateLocalStorage() {
 
 // Retrieve current user's userLibrary from local storage
 function getCurrUserLibrary() {
-    return JSON.parse(localStorage.getItem("userLibrary"));
+    return JSON.parse(localStorage.getItem("userLibrary") || "[]");
 }
 
 // ----------------------------------- Library is empty message -----------------------------------
