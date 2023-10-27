@@ -190,7 +190,7 @@ addBookModal.addEventListener("click", e => {
     }
 });
 
-// ------------------------------- New book modal form validation -------------------------------
+// ----------------------------- Handle pages input for new book form  -----------------------------
 
 const pagesInput = document.querySelector("#pages");
 pagesInput.addEventListener("input", validatePages);
@@ -226,6 +226,31 @@ function submitOnEnter(e) {
     }
 }
 
+// -------------------------------- Checking for duplicate books --------------------------------
+
+const titleInput = document.querySelector("#title");
+// Clear error message when user types so that form can be submitted
+titleInput.addEventListener("input", clearCustomValidity);
+
+function clearCustomValidity() {
+    this.setCustomValidity("");
+}
+
+// Returns true if duplicate exists, false otherwise
+function checkForDuplicates(currTitle) {
+    for (const { title, ...others } of userLibrary) {
+        if (title == currTitle) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function displayDuplicateMsg() {
+    titleInput.setCustomValidity("Book already exists!");
+    titleInput.reportValidity();
+}
+
 // ------------------------------- Adding and displaying new book -------------------------------
 
 addBookForm.addEventListener("submit", addNewBook);
@@ -239,6 +264,12 @@ function addNewBook(e) {
     const newBookAuthor = addBookForm.elements["author"].value;
     const newBookPages = addBookForm.elements["pages"].value;
     const newBookRead = addBookForm.elements["read"].checked;
+
+    // Check for duplicate books
+    if (checkForDuplicates(newBookTitle)) {
+        displayDuplicateMsg();
+        return;
+    }
 
     const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, newBookRead);
 
