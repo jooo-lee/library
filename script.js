@@ -25,11 +25,29 @@ function getCurrUserLibrary() {
     return JSON.parse(localStorage.getItem("userLibrary"));
 }
 
+// ----------------------------------- Library is empty message -----------------------------------
+
+// If there are no books in the library, show the empty library message
+function showEmptyMessage() {
+    if (userLibrary.length == 0) {
+        document.querySelector("#empty-library-message").style.display = "flex";
+    }
+}
+
+// If there are books in the library, hide the empty library message
+function hideEmptyMessage() {
+    if (userLibrary.length != 0) {
+        document.querySelector("#empty-library-message").style.display = "none";
+    }
+}
+
 // --------------------------- Displaying book cards on page open or reload ---------------------------
 
 // Loop through userLibrary array and display each book as a card
 function displayBooks() {
     const cardContainer = document.querySelector("#card-container");
+
+    hideEmptyMessage();
 
     for (let i = 0; i < userLibrary.length; i++) {
         const card = createCard(userLibrary[i]);
@@ -116,6 +134,7 @@ function deleteBook() {
 
     updateLocalStorage();
     updateDataIndices();
+    showEmptyMessage();
 }
 
 // Keep data-index attributes of cards consistent with respective Book object's index in userLibrary array
@@ -229,6 +248,7 @@ function addNewBook(e) {
 
     closeAddBookModal();
 
+    hideEmptyMessage();
     displayNewBook(newBook);
 }
 
