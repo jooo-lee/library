@@ -25,12 +25,14 @@
     }
 }
 
-html,
-body {
+html {
+    /* This, alongside body: min-height: 100%, will make the body
+    fill the viewport by default and grow with the document */
     height: 100%;
 }
 
 body {
+    min-height: 100%;
     padding: 20px;
     background-color: #3A2D32;
     display: flex;
