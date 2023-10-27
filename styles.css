@@ -90,8 +90,10 @@ dialog[open] {
     border-radius: var(--border-radius);
 }
 
+/* Blur backdrop when modal is open */
 #add-book-modal::backdrop {
-    backdrop-filter: blur(1px); /* Blur backdrop when modal is open */
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
 }
 
 #add-book-form {
