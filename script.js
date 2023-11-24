@@ -63,8 +63,8 @@ function createCard(book) {
     card.classList.add("card");
 
     // Loop over Book instance properties and create DOM element for each property
-    Object.keys(book).forEach(key => {
-        switch(key) {
+    Object.keys(book).forEach((key) => {
+        switch (key) {
             case "title":
             case "author":
             case "pages":
@@ -77,7 +77,7 @@ function createCard(book) {
                 const readBtn = createReadBtn(book[key]);
                 card.appendChild(readBtn);
                 break;
-            default: 
+            default:
                 break;
         }
     });
@@ -108,7 +108,7 @@ function createReadBtn(read) {
 
 function changeReadStatus() {
     this.classList.toggle("unread");
-    
+
     // Change "read" status of corresponding Book instance in userLibrary
     const index = this.parentElement.getAttribute("data-index");
     userLibrary[index].read = !userLibrary[index].read;
@@ -156,7 +156,9 @@ const addBookBtn = document.querySelector("#add-book");
 // Add book to library modal
 const addBookModal = document.querySelector("#add-book-modal");
 // Button for cancelling add new book
-const cancelAddBookBtn = document.querySelector("#add-book-modal .cancel-modal");
+const cancelAddBookBtn = document.querySelector(
+    "#add-book-modal .cancel-modal"
+);
 
 addBookBtn.addEventListener("click", openAddBookModal);
 cancelAddBookBtn.addEventListener("click", closeAddBookModal);
@@ -176,7 +178,7 @@ function closeAddBookModal() {
 }
 
 // Close new book modal when clicking outside of it
-addBookModal.addEventListener("click", e => {
+addBookModal.addEventListener("click", (e) => {
     // Prevent checking and unchecking checkbox using keyboard from closing modal
     if (e.clientX == 0 && e.clientY == 0) return;
     const modalDimensions = addBookModal.getBoundingClientRect();
@@ -215,8 +217,12 @@ function checkForDecimal(e) {
 
 // ---------------------------- Handle "enter" key for new book form ----------------------------
 
-const textAndNumberInputs = document.querySelectorAll("input[type='text'], input[type='number']");
-textAndNumberInputs.forEach(input => input.addEventListener("keydown", submitOnEnter));
+const textAndNumberInputs = document.querySelectorAll(
+    "input[type='text'], input[type='number']"
+);
+textAndNumberInputs.forEach((input) =>
+    input.addEventListener("keydown", submitOnEnter)
+);
 
 function submitOnEnter(e) {
     if (e.key == "Enter") {
@@ -271,7 +277,12 @@ function addNewBook(e) {
         return;
     }
 
-    const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, newBookRead);
+    const newBook = new Book(
+        newBookTitle,
+        newBookAuthor,
+        newBookPages,
+        newBookRead
+    );
 
     // Add Book instance to start of userLibrary array
     userLibrary.unshift(newBook);
