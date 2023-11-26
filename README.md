@@ -26,7 +26,7 @@ For smaller screens:
 
 ## I learned how to:
 
--   Use object constructors
+-   Use object constructors (refactored to use classes)
 -   Create a pop-up modal with a form for users to submit data
 -   Dynamically create and display DOM elements
 -   Link DOM elements with corresponding array element so deletion works correctly
