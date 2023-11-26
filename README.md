@@ -16,31 +16,31 @@ For smaller screens:
 
 ## Features:
 
-* Pop-up modal with a form for adding new books
-* Client-side form validation
-    * Prevents users from adding duplicate books
-    * Only allows positive integers as page number input
-* Button to toggle read/unread status
-* Delete book button
-* Local storage to save user's books in browser
+-   Pop-up modal with a form for adding new books
+-   Client-side form validation
+    -   Prevents users from adding duplicate books
+    -   Only allows positive integers as page number input
+-   Button to toggle read/unread status
+-   Delete book button
+-   Local storage to save user's books in browser
 
 ## I learned how to:
 
-* Use object constructors
-* Create a pop-up modal with a form for users to submit data
-* Dynamically create and display DOM elements
-* Link DOM elements with corresponding array element so deletion works correctly
-* Store data in local storage
+-   Use object constructors
+-   Create a pop-up modal with a form for users to submit data
+-   Dynamically create and display DOM elements
+-   Link DOM elements with corresponding array element so deletion works correctly
+-   Store data in local storage
 
 ## Future features:
 
-* Display total number of books
-* Sort books by title, author, pages, etc.
-* Filter by read or unread
-* Add "reading" option to read/unread status
-* Allow users to rate books
-* Allow users to edit books
-* Display book cover
+-   Display total number of books
+-   Sort books by title, author, pages, etc.
+-   Filter by read or unread
+-   Add "reading" option to read/unread status
+-   Allow users to rate books
+-   Allow users to edit books
+-   Display book cover
 
 ## Acknowledgements:
 
